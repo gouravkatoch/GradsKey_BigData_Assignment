@@ -1,0 +1,21 @@
+Question 3:
+Return vs Yield (15 Marks) 
+Write a function which generates 100 random numbers. Use both return and yield, explain what you observe ?
+
+import random
+def generate_random_numbers():
+    random_numbers = []
+    for _ in range(100):
+        random_numbers.append(random.randint(1, 100))
+    return random_numbers
+def generate_random_numbers_yield():
+    for _ in range(100):
+        yield random.randint(1, 100)
+random_numbers = generate_random_numbers()
+print(random_numbers[:10])
+random_numbers_gen = generate_random_numbers_yield()
+print([next(random_numbers_gen) for _ in range(10)])
+
+When using return, all values are stored and returned as a list, which can consume a lot of memory for large datasets.
+With yield, the values are produced one at a time and can be consumed without holding all values in memory at once, 
+which makes it much more efficient for handling large streams of data.
